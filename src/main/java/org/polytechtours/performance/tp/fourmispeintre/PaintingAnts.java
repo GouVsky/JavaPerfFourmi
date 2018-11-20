@@ -151,59 +151,6 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
   }
 
   // =========================================================================
-  // cette fonction analyse une chaine :
-  // si pStr est un nombre : sa valeur est retournée
-  // si pStr est un interval x..y : une valeur au hasard dans [x,y] est
-  // retournée
-  private float readFloatParameter(String pStr) {
-    float lMin, lMax, lResult;
-    // System.out.println(" chaine pStr: "+pStr);
-    StringTokenizer lStrTok = new StringTokenizer(pStr, ":");
-    // on lit une premiere valeur
-    lMin = Float.valueOf(lStrTok.nextToken()).floatValue();
-    // System.out.println(" lMin: "+lMin);
-    lResult = lMin;
-    // on essaye d'en lire une deuxieme
-    try {
-      lMax = Float.valueOf(lStrTok.nextToken()).floatValue();
-      // System.out.println(" lMax: "+lMax);
-      if (lMax > lMin) {
-        // on choisit un nombre entre lMin et lMax
-        lResult = (float) (Math.random() * (lMax - lMin)) + lMin;
-      }
-    } catch (java.util.NoSuchElementException e) {
-      // il n'y pas de deuxieme nombre et donc le nombre retourné correspond au
-      // premier nombre
-    }
-    return lResult;
-  }
-
-  // =========================================================================
-  // cette fonction analyse une chaine :
-  // si pStr est un nombre : sa valeur est retournée
-  // si pStr est un interval x..y : une valeur au hasard dans [x,y] est
-  // retournée
-  private int readIntParameter(String pStr) {
-    int lMin, lMax, lResult;
-    StringTokenizer lStrTok = new StringTokenizer(pStr, ":");
-    // on lit une premiere valeur
-    lMin = Integer.valueOf(lStrTok.nextToken()).intValue();
-    lResult = lMin;
-    // on essaye d'en lire une deuxieme
-    try {
-      lMax = Integer.valueOf(lStrTok.nextToken()).intValue();
-      if (lMax > lMin) {
-        // on choisit un nombre entre lMin et lMax
-        lResult = (int) (Math.random() * (lMax - lMin + 1)) + lMin;
-      }
-    } catch (java.util.NoSuchElementException e) {
-      // il n'y pas de deuxieme nombre et donc le nombre retourné correspond au
-      // premier nombre
-    }
-    return lResult;
-  }
-
-  // =========================================================================
   // lecture des paramètres de l'applet
   private void readParameterFourmis() {
     String lChaine;
@@ -223,7 +170,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     // N : seuil de luminance : -1 = random(2..60), x..y = random(x..y)
     lChaine = getParameter("SeuilLuminance");
     if (lChaine != null) {
-      lSeuilLuminance = readFloatParameter(lChaine);
+      lSeuilLuminance = Utils.readFloatParameter(lChaine);
     } else {
       // si seuil de luminance n'est pas défini
       lSeuilLuminance = 40f;
@@ -235,7 +182,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     // N : nombre de fourmis : -1 = random(2..6), x..y = random(x..y)
     lChaine = getParameter("NbFourmis");
     if (lChaine != null) {
-      lNbFourmis = readIntParameter(lChaine);
+      lNbFourmis = Utils.readIntParameter(lChaine);
     } else {
       // si le parametre NbFourmis n'est pas défini
       lNbFourmis = -1;
@@ -276,16 +223,16 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         StringTokenizer lSTParam = new StringTokenizer(lSTFourmi.nextToken(), "()");
         // lecture de la couleur déposée
         StringTokenizer lSTCouleurDéposée = new StringTokenizer(lSTParam.nextToken(), ",");
-        R = readIntParameter(lSTCouleurDéposée.nextToken());
+        R = Utils.readIntParameter(lSTCouleurDéposée.nextToken());
         if (R == -1) {
           R = (int) (Math.random() * 256);
         }
 
-        G = readIntParameter(lSTCouleurDéposée.nextToken());
+        G = Utils.readIntParameter(lSTCouleurDéposée.nextToken());
         if (G == -1) {
           G = (int) (Math.random() * 256);
         }
-        B = readIntParameter(lSTCouleurDéposée.nextToken());
+        B = Utils.readIntParameter(lSTCouleurDéposée.nextToken());
         if (B == -1) {
           B = (int) (Math.random() * 256);
         }
@@ -294,28 +241,28 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         // lecture de la couleur suivie
         StringTokenizer lSTCouleurSuivi = new StringTokenizer(lSTParam.nextToken(), ",");
-        R = readIntParameter(lSTCouleurSuivi.nextToken());
-        G = readIntParameter(lSTCouleurSuivi.nextToken());
-        B = readIntParameter(lSTCouleurSuivi.nextToken());
+        R = Utils.readIntParameter(lSTCouleurSuivi.nextToken());
+        G = Utils.readIntParameter(lSTCouleurSuivi.nextToken());
+        B = Utils.readIntParameter(lSTCouleurSuivi.nextToken());
         lCouleurSuivie = new Color(R, G, B);
         System.out.print("(" + R + "," + G + "," + B + ")");
 
         // lecture de la position de la direction de départ et de la taille de
         // la trace
         StringTokenizer lSTDéplacement = new StringTokenizer(lSTParam.nextToken(), ",");
-        lInit_x = readFloatParameter(lSTDéplacement.nextToken());
+        lInit_x = Utils.readFloatParameter(lSTDéplacement.nextToken());
         if (lInit_x < 0.0 || lInit_x > 1.0) {
           lInit_x = (float) Math.random();
         }
-        lInit_y = readFloatParameter(lSTDéplacement.nextToken());
+        lInit_y = Utils.readFloatParameter(lSTDéplacement.nextToken());
         if (lInit_y < 0.0 || lInit_y > 1.0) {
           lInit_y = (float) Math.random();
         }
-        lInitDirection = readIntParameter(lSTDéplacement.nextToken());
+        lInitDirection = Utils.readIntParameter(lSTDéplacement.nextToken());
         if (lInitDirection < 0 || lInitDirection > 7) {
           lInitDirection = (int) (Math.random() * 8);
         }
-        lTaille = readIntParameter(lSTDéplacement.nextToken());
+        lTaille = Utils.readIntParameter(lSTDéplacement.nextToken());
         if (lTaille < 0 || lTaille > 3) {
           lTaille = (int) (Math.random() * 4);
         }
@@ -334,10 +281,10 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
           }
         }
 
-        lProbaG = readFloatParameter(lSTProbas.nextToken());
-        lProbaTD = readFloatParameter(lSTProbas.nextToken());
-        lProbaD = readFloatParameter(lSTProbas.nextToken());
-        lProbaSuivre = readFloatParameter(lSTProbas.nextToken());
+        lProbaG = Utils.readFloatParameter(lSTProbas.nextToken());
+        lProbaTD = Utils.readFloatParameter(lSTProbas.nextToken());
+        lProbaD = Utils.readFloatParameter(lSTProbas.nextToken());
+        lProbaSuivre = Utils.readFloatParameter(lSTProbas.nextToken());
         // on normalise au cas ou
         float lSomme = lProbaG + lProbaTD + lProbaD;
         lProbaG /= lSomme;
