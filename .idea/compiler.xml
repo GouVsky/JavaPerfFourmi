@@ -9,5 +9,8 @@
         <module name="paintingants" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="paintingants" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
