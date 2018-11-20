@@ -294,9 +294,19 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         System.out.println(
             "(" + lTypeDeplacement + "," + lProbaG + "," + lProbaTD + "," + lProbaD + "," + lProbaSuivre + ");");
 
+        // Création du déplacement de la fourmi.
+
+        float[] deplacements = new float[4];
+        deplacements[0] = lProbaG;
+        deplacements[1] = lProbaTD;
+        deplacements[2] = lProbaD;
+        deplacements[3] = lProbaSuivre;
+
+        CDeplacement lDeplacement = new CDeplacement(lTypeDeplacement, lInitDirection, deplacements);
+
         // création de la fourmi
-        lFourmi = new CFourmi(lCouleurDeposee, lCouleurSuivie, lProbaTD, lProbaG, lProbaD, lProbaSuivre, mPainting,
-            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, CCouleur.seuilLuminance, this);
+        lFourmi = new CFourmi(lCouleurDeposee, lCouleurSuivie, lDeplacement, mPainting,
+            lInit_x, lInit_y, lTaille, this);
         mColonie.addElement(lFourmi);
         lNbFourmis++;
       }
@@ -356,7 +366,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         // création et ajout de la fourmi dans la colonie
         lFourmi = new CFourmi(lTabColor[i], lTabColor[lColor], lProbaTD, lProbaG, lProbaD, lProbaSuivre, mPainting,
-            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, CCouleur.seuilLuminance, this);
+            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, this);
         mColonie.addElement(lFourmi);
       }
     }

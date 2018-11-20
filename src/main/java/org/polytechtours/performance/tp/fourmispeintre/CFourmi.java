@@ -11,57 +11,36 @@ public class CFourmi {
   static private int[][] mIncDirection = new int[8][2];
   // le generateur aléatoire (Random est thread safe donc on la partage)
   private static Random GenerateurAleatoire = new Random();
-  // couleur déposé par la fourmi
-  private CCouleur mCouleurDeposee;
   // objet graphique sur lequel les fourmis peuvent peindre
   private CPainting mPainting;
   // Coordonées de la fourmi
   private int x, y;
-  // Proba d'aller a gauche, en face, a droite, de suivre la couleur
-  private float[] mProba = new float[4];
-  // Numéro de la direction dans laquelle la fourmi regarde
-  private int mDirection;
   // Taille de la trace de phéromones déposée par la fourmi
   private int mTaille;
-  // Pas d'incrémentation des directions suivant le nombre de directions
-  // allouées à la fourmies
-  private int mDecalDir;
   // l'applet
   private PaintingAnts mApplis;
-  // seuil de luminance pour la détection de la couleur recherchée
-  private float mSeuilLuminance;
-  // nombre de déplacements de la fourmi
-  private long mNbDeplacements;
+
+  // Couleur déposée par la fourmi.
+  private CCouleur mCouleurDeposee;
+  // Deplacement de la fourmi.
+  private CDeplacement mDeplacement;
+
 
   /*************************************************************************************************
   */
-  public CFourmi(CCouleur pCouleurDeposee, CCouleur pCouleurSuivie, float pProbaTD, float pProbaG, float pProbaD,
-      float pProbaSuivre, CPainting pPainting, char pTypeDeplacement, float pInit_x, float pInit_y, int pInitDirection,
-      int pTaille, float pSeuilLuminance, PaintingAnts pApplis) {
-
+  public CFourmi(CCouleur pCouleurDeposee, CCouleur pCouleurSuivie, CDeplacement pDeplacement,
+                 CPainting pPainting, float pInit_x, float pInit_y, int pTaille, PaintingAnts pApplis)
+  {
     mCouleurDeposee = pCouleurDeposee;
+
+    mDeplacement = pDeplacement;
+
+
     mPainting = pPainting;
     mApplis = pApplis;
 
-    // direction de départ
-    mDirection = pInitDirection;
-
     // taille du trait
     mTaille = pTaille;
-
-    // initialisation des probas
-    mProba[0] = pProbaG; // proba d'aller à gauche
-    mProba[1] = pProbaTD; // proba d'aller tout droit
-    mProba[2] = pProbaD; // proba d'aller à droite
-    mProba[3] = pProbaSuivre; // proba de suivre la couleur
-
-    // nombre de directions pouvant être prises : 2 types de déplacement
-    // possibles
-    if (pTypeDeplacement == 'd') {
-      mDecalDir = 2;
-    } else {
-      mDecalDir = 1;
-    }
 
     // initialisation du tableau des directions
     CFourmi.mIncDirection[0][0] = 0;
@@ -80,28 +59,26 @@ public class CFourmi {
     CFourmi.mIncDirection[6][1] = 0;
     CFourmi.mIncDirection[7][0] = -1;
     CFourmi.mIncDirection[7][1] = -1;
-
-    mSeuilLuminance = pSeuilLuminance;
-    mNbDeplacements = 0;
   }
 
   /*************************************************************************************************
    * Titre : void deplacer() Description : Fonction de deplacement de la fourmi
    *
    */
-  public synchronized void deplacer() {
+  public synchronized void deplacer()
+  {
     float tirage, prob1, prob2, prob3, total;
     int[] dir = new int[3];
     int i, j;
     CCouleur lCouleur;
 
-    mNbDeplacements++;
+    mDeplacement.doDeplacement();
 
     dir[0] = 0;
     dir[1] = 0;
     dir[2] = 0;
 
-    // le tableau dir contient 0 si la direction concernée ne contient pas la
+    /*// le tableau dir contient 0 si la direction concernée ne contient pas la
     // couleur
     // à suivre, et 1 sinon (dir[0]=gauche, dir[1]=tt_droit, dir[2]=droite)
     i = Utils.modulo(x + CFourmi.mIncDirection[Utils.modulo(mDirection - mDecalDir, 8)][0], mPainting.getLargeur());
@@ -113,7 +90,7 @@ public class CFourmi {
     }
     if (mCouleurDeposee.testCouleur(lCouleur)) {
       dir[0] = 1;
-    }
+    }*/
 
     i = Utils.modulo(x + CFourmi.mIncDirection[mDirection][0], mPainting.getLargeur());
     j = Utils.modulo(y + CFourmi.mIncDirection[mDirection][1], mPainting.getHauteur());
@@ -180,13 +157,6 @@ public class CFourmi {
 
     mApplis.IncrementFpsCounter();
   }
-
-  /*************************************************************************************************
-  */
-  public long getNbDeplacements() {
-    return mNbDeplacements;
-  }
-  /****************************************************************************/
 
   /*************************************************************************************************
   */

@@ -7,17 +7,20 @@ public class CCouleur extends Color
     public static float seuilLuminance;
 
     private float luminance;
+    
 
     public CCouleur(int red, int green, int blue)
     {
         super(red, green, blue);
 
-        luminance = 0.2426f * red + 0.7152f * green + 0.0722f * blue;
+        setLuminance();
     }
 
     public CCouleur(int rgb)
     {
         super(rgb);
+
+        setLuminance();
     }
 
     /*************************************************************************************************
@@ -32,6 +35,11 @@ public class CCouleur extends Color
             return true;
 
         return false;
+    }
+
+    private void setLuminance()
+    {
+        luminance = 0.2426f * getRed() + 0.7152f * getGreen() + 0.0722f * getBlue();
     }
 
     public float getLuminance()
