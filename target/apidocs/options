@@ -1,0 +1,26 @@
+-encoding
+'UTF-8'
+-protected
+-quiet
+-source
+'1.8'
+-sourcepath
+'/Users/Greg/Desktop/Java/JavaPerfFourmi/src/main/sh/../../../src/main/java:/Users/Greg/Desktop/Java/JavaPerfFourmi/src/main/sh/../../../target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2018. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/Greg/Desktop/Java/JavaPerfFourmi/src/main/sh/../../../target/apidocs'
+-docencoding
+'UTF-8'
+-docfilessubdirs
+-doctitle
+'paintingants 1.0.0-SNAPSHOT API'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' '/Users/Greg/Desktop/Java/JavaPerfFourmi/src/main/sh/../../../target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'paintingants 1.0.0-SNAPSHOT API'
