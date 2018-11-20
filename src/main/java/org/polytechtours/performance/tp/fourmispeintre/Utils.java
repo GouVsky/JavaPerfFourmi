@@ -4,6 +4,19 @@ import java.util.StringTokenizer;
 
 public class Utils
 {
+    /*************************************************************************************************
+     * Titre : modulo Description : Fcontion de modulo permettant au fourmi de
+     * reapparaitre de l autre coté du Canvas lorsque qu'elle sorte de ce dernier
+     *
+     * @param x
+     *          valeur
+     *
+     * @return int
+     */
+    public static int modulo(int x, int m) {
+        return (x + m) % m;
+    }
+
     // =========================================================================
     // cette fonction analyse une chaine :
     // si pStr est un nombre : sa valeur est retournée

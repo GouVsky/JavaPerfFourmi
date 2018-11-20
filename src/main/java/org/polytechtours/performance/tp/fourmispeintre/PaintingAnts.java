@@ -155,9 +155,9 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
   private void readParameterFourmis() {
     String lChaine;
     int R, G, B;
-    Color lCouleurDeposee, lCouleurSuivie;
+    CCouleur lCouleurDeposee, lCouleurSuivie;
     CFourmi lFourmi;
-    float lProbaTD, lProbaG, lProbaD, lProbaSuivre, lSeuilLuminance;
+    float lProbaTD, lProbaG, lProbaD, lProbaSuivre;
     char lTypeDeplacement = ' ';
     int lInitDirection, lTaille;
     float lInit_x, lInit_y;
@@ -170,12 +170,12 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     // N : seuil de luminance : -1 = random(2..60), x..y = random(x..y)
     lChaine = getParameter("SeuilLuminance");
     if (lChaine != null) {
-      lSeuilLuminance = Utils.readFloatParameter(lChaine);
+      CCouleur.seuilLuminance = Utils.readFloatParameter(lChaine);
     } else {
       // si seuil de luminance n'est pas défini
-      lSeuilLuminance = 40f;
+      CCouleur.seuilLuminance = 40f;
     }
-    System.out.println("Seuil de luminance:" + lSeuilLuminance);
+    System.out.println("Seuil de luminance:" + CCouleur.seuilLuminance);
 
     // Lecture du nombre de fourmis :
     // <PARAM NAME="NbFourmis" VALUE="N">
@@ -236,7 +236,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         if (B == -1) {
           B = (int) (Math.random() * 256);
         }
-        lCouleurDeposee = new Color(R, G, B);
+        lCouleurDeposee = new CCouleur(R, G, B);
         System.out.print("Parametres de la fourmi " + lNbFourmis + ":(" + R + "," + G + "," + B + ")");
 
         // lecture de la couleur suivie
@@ -244,7 +244,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         R = Utils.readIntParameter(lSTCouleurSuivi.nextToken());
         G = Utils.readIntParameter(lSTCouleurSuivi.nextToken());
         B = Utils.readIntParameter(lSTCouleurSuivi.nextToken());
-        lCouleurSuivie = new Color(R, G, B);
+        lCouleurSuivie = new CCouleur(R, G, B);
         System.out.print("(" + R + "," + G + "," + B + ")");
 
         // lecture de la position de la direction de départ et de la taille de
@@ -296,7 +296,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         // création de la fourmi
         lFourmi = new CFourmi(lCouleurDeposee, lCouleurSuivie, lProbaTD, lProbaG, lProbaD, lProbaSuivre, mPainting,
-            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, lSeuilLuminance, this);
+            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, CCouleur.seuilLuminance, this);
         mColonie.addElement(lFourmi);
         lNbFourmis++;
       }
@@ -304,7 +304,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     {
 
       int i;
-      Color lTabColor[] = new Color[lNbFourmis];
+      CCouleur lTabColor[] = new CCouleur[lNbFourmis];
       int lColor;
 
       // initialisation aléatoire de la couleur de chaque fourmi
@@ -312,7 +312,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         R = (int) (Math.random() * 256);
         G = (int) (Math.random() * 256);
         B = (int) (Math.random() * 256);
-        lTabColor[i] = new Color(R, G, B);
+        lTabColor[i] = new CCouleur(R, G, B);
       }
 
       // construction des fourmis
@@ -356,7 +356,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         // création et ajout de la fourmi dans la colonie
         lFourmi = new CFourmi(lTabColor[i], lTabColor[lColor], lProbaTD, lProbaG, lProbaD, lProbaSuivre, mPainting,
-            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, lSeuilLuminance, this);
+            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, CCouleur.seuilLuminance, this);
         mColonie.addElement(lFourmi);
       }
     }
