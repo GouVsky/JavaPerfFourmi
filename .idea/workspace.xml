@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9312ac13-a734-40ce-ab5c-a0fc7dd6f35c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CPainting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CPainting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CFourmi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CFourmi.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +31,7 @@
       <file leaf-file-name="StatisticsHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
+            <state relative-caret-position="187">
               <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
             </state>
           </provider>
@@ -64,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CFourmi.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CFourmi.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CFourmi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-218">
-              <caret line="157" column="8" selection-start-line="157" selection-start-column="8" selection-end-line="157" selection-end-column="8" />
+            <state relative-caret-position="457">
+              <caret line="157" column="3" selection-start-line="157" selection-start-column="3" selection-end-line="157" selection-end-column="3" />
               <folding>
                 <element signature="e#6715#6716#0" expanded="true" />
                 <element signature="e#6747#6748#0" expanded="true" />
@@ -81,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CPainting.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CPainting.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CPainting.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="296" column="46" lean-forward="true" selection-start-line="296" selection-start-column="46" selection-end-line="296" selection-end-column="46" />
+            <state relative-caret-position="255">
+              <caret line="396" column="83" lean-forward="true" selection-start-line="396" selection-start-column="83" selection-end-line="396" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -126,6 +125,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CPainting.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CFourmi.java" />
       </list>
     </option>
   </component>
@@ -394,17 +394,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/html/ants_worst.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/Color.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="556" column="37" selection-start-line="556" selection-start-column="37" selection-end-line="556" selection-end-column="37" />
-          <folding>
-            <element signature="e#17219#17220#0" expanded="true" />
-            <element signature="e#17265#17266#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/PaintingAnts.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2032">
@@ -419,35 +408,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CFourmi.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CPainting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-218">
-          <caret line="157" column="8" selection-start-line="157" selection-start-column="8" selection-end-line="157" selection-end-column="8" />
-          <folding>
-            <element signature="e#6715#6716#0" expanded="true" />
-            <element signature="e#6747#6748#0" expanded="true" />
-            <element signature="e#6957#6958#0" expanded="true" />
-            <element signature="e#6975#6976#0" expanded="true" />
-            <element signature="e#7104#7105#0" expanded="true" />
-            <element signature="e#7122#7123#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="396" column="83" lean-forward="true" selection-start-line="396" selection-start-column="83" selection-end-line="396" selection-end-column="83" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CColonie.java">
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/Color.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7">
-          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="115">
+          <caret line="556" column="37" selection-start-line="556" selection-start-column="37" selection-end-line="556" selection-end-column="37" />
           <folding>
-            <element signature="e#733#734#0" expanded="true" />
-            <element signature="e#760#761#0" expanded="true" />
+            <element signature="e#17219#17220#0" expanded="true" />
+            <element signature="e#17265#17266#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
+        <state relative-caret-position="187">
           <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
         </state>
       </provider>
@@ -463,10 +444,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CPainting.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CColonie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="296" column="46" lean-forward="true" selection-start-line="296" selection-start-column="46" selection-end-line="296" selection-end-column="46" />
+        <state relative-caret-position="7">
+          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+          <folding>
+            <element signature="e#733#734#0" expanded="true" />
+            <element signature="e#760#761#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/polytechtours/performance/tp/fourmispeintre/CFourmi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="157" column="3" selection-start-line="157" selection-start-column="3" selection-end-line="157" selection-end-column="3" />
+          <folding>
+            <element signature="e#6715#6716#0" expanded="true" />
+            <element signature="e#6747#6748#0" expanded="true" />
+            <element signature="e#6957#6958#0" expanded="true" />
+            <element signature="e#6975#6976#0" expanded="true" />
+            <element signature="e#7104#7105#0" expanded="true" />
+            <element signature="e#7122#7123#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -155,7 +155,7 @@ public class CFourmi {
     total = prob1 + prob2 + prob3;
     prob1 = prob1 / total;
     prob2 = prob2 / total + prob1;
-    prob3 = prob3 / total + prob2;
+    
 
     // incrémentation de la direction de la fourmi selon la direction choisie
     tirage = GenerateurAleatoire.nextFloat();// Math.random();
