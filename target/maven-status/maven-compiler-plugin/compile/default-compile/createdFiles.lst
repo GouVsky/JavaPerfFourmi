@@ -1,10 +1,12 @@
+org/polytechtours/performance/tp/fourmispeintre/utils/StringUtils.class
 org/polytechtours/performance/tp/fourmispeintre/PaintingAnts.class
-org/polytechtours/performance/tp/fourmispeintre/Directions.class
 org/polytechtours/performance/tp/fourmispeintre/CColonie.class
 org/polytechtours/performance/tp/fourmispeintre/CPainting.class
-org/polytechtours/performance/tp/fourmispeintre/CFourmi.class
-org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler.class
-org/polytechtours/performance/tp/fourmispeintre/Utils.class
-org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler$UpdateListener.class
+org/polytechtours/performance/tp/fourmispeintre/utils/ParametersUtils.class
+org/polytechtours/performance/tp/fourmispeintre/utils/MathsUtils.class
 org/polytechtours/performance/tp/fourmispeintre/CCouleur.class
 org/polytechtours/performance/tp/fourmispeintre/CDeplacement.class
+org/polytechtours/performance/tp/fourmispeintre/Directions.class
+org/polytechtours/performance/tp/fourmispeintre/CFourmi.class
+org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler.class
+org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler$UpdateListener.class

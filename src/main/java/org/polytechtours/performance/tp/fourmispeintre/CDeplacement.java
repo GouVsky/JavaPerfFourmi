@@ -1,5 +1,7 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 
+import org.polytechtours.performance.tp.fourmispeintre.utils.MathsUtils;
+
 import java.util.Random;
 
 public class CDeplacement
@@ -71,10 +73,10 @@ public class CDeplacement
         float tirage = new Random().nextFloat();
 
         if (tirage < realProbas[0])
-            currentDirection = Utils.modulo(currentDirection - decalDirection, 8);
+            currentDirection = MathsUtils.modulo(currentDirection - decalDirection, 8);
 
         else if (tirage >= realProbas[1])
-            currentDirection = Utils.modulo(currentDirection + decalDirection, 8);
+            currentDirection = MathsUtils.modulo(currentDirection + decalDirection, 8);
     }
 
     private void calculateDirections()
