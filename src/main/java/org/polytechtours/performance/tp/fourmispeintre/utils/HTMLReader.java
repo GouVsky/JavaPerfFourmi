@@ -1,12 +1,11 @@
 package org.polytechtours.performance.tp.fourmispeintre.utils;
 
-import org.polytechtours.performance.tp.fourmispeintre.CCouleur;
-import org.polytechtours.performance.tp.fourmispeintre.PaintingAnts;
+import org.polytechtours.performance.tp.fourmispeintre.*;
 
 import java.applet.Applet;
 import java.util.StringTokenizer;
 
-public class ParametersUtils
+public class HTMLReader
 {
     // Lecture du seuil de luminance
     // <PARAM NAME="SeuilLuminance" VALUE="N">
@@ -24,7 +23,7 @@ public class ParametersUtils
     // Lecture du nombre de fourmis :
     // <PARAM NAME="NbFourmis" VALUE="N">
     // N : nombre de fourmis : -1 = random(2..6), x..y = random(x..y)
-    public static int readFourmis(PaintingAnts applet)
+    public static int readNombreFourmis(PaintingAnts applet)
     {
         String lChaine = applet.getParameter("NbFourmis");
 
@@ -89,5 +88,38 @@ public class ParametersUtils
             return (int) (Math.random() * 4);
 
         return taille;
+    }
+
+    public static char readTypeDeplacement(StringTokenizer lSTProbas)
+    {
+        char typeDeplacement = lSTProbas.nextToken().charAt(0);
+
+        if (typeDeplacement != 'o' && typeDeplacement != 'd')
+        {
+            if (Math.random() < 0.5)
+                return 'o';
+        }
+
+        return 'd';
+    }
+
+    public static float[] readProbas(StringTokenizer lSTProbas)
+    {
+        float[] probas = new float[4];
+
+        probas[Directions.TOWARDS] = StringUtils.readFloatParameter(lSTProbas.nextToken());
+        probas[Directions.LEFT] = StringUtils.readFloatParameter(lSTProbas.nextToken());
+        probas[Directions.RIGHT] = StringUtils.readFloatParameter(lSTProbas.nextToken());
+        probas[Directions.FOLLOW] = StringUtils.readFloatParameter(lSTProbas.nextToken());
+
+        // On normalise au cas où.
+
+        float lSomme = probas[Directions.LEFT] + probas[Directions.TOWARDS] + probas[Directions.RIGHT];
+
+        probas[Directions.LEFT] /= lSomme;
+        probas[Directions.TOWARDS] /= lSomme;
+        probas[Directions.RIGHT] /= lSomme;
+
+        return probas;
     }
 }

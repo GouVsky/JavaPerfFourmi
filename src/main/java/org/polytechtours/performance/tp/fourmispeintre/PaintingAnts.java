@@ -1,7 +1,6 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 
-import org.polytechtours.performance.tp.fourmispeintre.utils.ParametersUtils;
-import org.polytechtours.performance.tp.fourmispeintre.utils.StringUtils;
+import org.polytechtours.performance.tp.fourmispeintre.utils.HTMLReader;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -150,26 +149,12 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     // lecture des paramètres de l'applet
     private void readParameterFourmis()
     {
-        String lChaine;
-        CCouleur lCouleurDeposee, lCouleurSuivie;
-        CFourmi lFourmi;
-        float lProbaTD, lProbaG, lProbaD, lProbaSuivre;
-        char lTypeDeplacement = ' ';
-        int lInitDirection, lTaille;
-        float lInit_x, lInit_y;
-
-
-
-        int lNbFourmis;
-
-        // Lecture des paramètres des fourmis
-
         // Luminance.
-        CCouleur.seuilLuminance = ParametersUtils.readLuminance(this);
+        CCouleur.seuilLuminance = HTMLReader.readLuminance(this);
         //System.out.println("Seuil de luminance:" + CCouleur.seuilLuminance);
 
         // Nombre de fourmis.
-        lNbFourmis = ParametersUtils.readFourmis(this);
+        int lNbFourmis = HTMLReader.readNombreFourmis(this);
 
 
         // <PARAM NAME="Fourmis"
@@ -188,10 +173,15 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         // type deplacement = o/d : -1 = random(o/d)
         // probas : -1 = random(0.0 ... 1.0); x:y = random(x...y)
 
-        lChaine = getParameter("Fourmis");
+        String lChaine = getParameter("Fourmis");
 
         if (lChaine != null)
         {
+            char lTypeDeplacement;
+            float lInit_x, lInit_y;
+            int lInitDirection, lTaille;
+            CCouleur lCouleurDeposee, lCouleurSuivie;
+
             //System.out.println("Paramètres:" + lChaine);
 
             // Chaine de paramètres pour une fourmi.
@@ -202,79 +192,38 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
                 StringTokenizer lSTParam = new StringTokenizer(lSTFourmi.nextToken(), "()");
 
                 // Couleur déposée.
-                lCouleurDeposee = ParametersUtils.readCouleur(lSTParam);
+                lCouleurDeposee = HTMLReader.readCouleur(lSTParam);
 
                 // Couleur suivie.
-                lCouleurSuivie = ParametersUtils.readCouleur(lSTParam);
+                lCouleurSuivie = HTMLReader.readCouleur(lSTParam);
 
 
                 StringTokenizer lSTDéplacement = new StringTokenizer(lSTParam.nextToken(), ",");
 
                 // Lecture des coordonnées.
-                float[] coordonnees = ParametersUtils.readCoordonnees(lSTDéplacement);
+                float[] coordonnees = HTMLReader.readCoordonnees(lSTDéplacement);
 
                 lInit_x = coordonnees[0];
                 lInit_y = coordonnees[1];
 
                 // Lecture de la direction de départ.
-                lInitDirection = ParametersUtils.readDirection(lSTDéplacement);
+                lInitDirection = HTMLReader.readDirection(lSTDéplacement);
 
                 // Lecture de la taille.
-                lTaille = ParametersUtils.readTaille(lSTDéplacement);
+                lTaille = HTMLReader.readTaille(lSTDéplacement);
 
 
-                /*System.out.print("Parametres de la fourmi " + lNbFourmis + ":("
-                                    + lCouleurDeposee.getRed() + ","
-                                    + lCouleurDeposee.getGreen() + ","
-                                    + lCouleurDeposee.getBlue() + ")");*/
-
-                /*System.out.print("(" + lCouleurSuivie.getRed() + ","
-                                    + lCouleurSuivie.getGreen() + ","
-                                    + lCouleurSuivie.getBlue() + ")");*/
-
-                //System.out.print("(" + lInit_x + "," + lInit_y + "," + lInitDirection + "," + lTaille + ")");
-
-                // lecture des probas
                 StringTokenizer lSTProbas = new StringTokenizer(lSTParam.nextToken(), ",");
-                lTypeDeplacement = lSTProbas.nextToken().charAt(0);
-                // System.out.println(" lTypeDeplacement:"+lTypeDeplacement);
 
-                if (lTypeDeplacement != 'o' && lTypeDeplacement != 'd') {
-                    if (Math.random() < 0.5) {
-                        lTypeDeplacement = 'o';
-                    } else {
-                        lTypeDeplacement = 'd';
-                    }
-                }
+                lTypeDeplacement = HTMLReader.readTypeDeplacement(lSTProbas);
 
-                lProbaG = StringUtils.readFloatParameter(lSTProbas.nextToken());
-                lProbaTD = StringUtils.readFloatParameter(lSTProbas.nextToken());
-                lProbaD = StringUtils.readFloatParameter(lSTProbas.nextToken());
-                lProbaSuivre = StringUtils.readFloatParameter(lSTProbas.nextToken());
-                // on normalise au cas ou
-                float lSomme = lProbaG + lProbaTD + lProbaD;
-                lProbaG /= lSomme;
-                lProbaTD /= lSomme;
-                lProbaD /= lSomme;
+                float[] probas = HTMLReader.readProbas(lSTProbas);
 
-                System.out.println(
-                        "(" + lTypeDeplacement + "," + lProbaG + "," + lProbaTD + "," + lProbaD + "," + lProbaSuivre + ");");
 
-                // Création du déplacement de la fourmi.
+                CDeplacement lDeplacement = new CDeplacement(lTypeDeplacement, lInitDirection, probas);
 
-                float[] deplacements = new float[4];
-                deplacements[0] = lProbaG;
-                deplacements[1] = lProbaTD;
-                deplacements[2] = lProbaD;
-                deplacements[3] = lProbaSuivre;
-
-                CDeplacement lDeplacement = new CDeplacement(lTypeDeplacement, lInitDirection, deplacements);
-
-                // création de la fourmi
-                lFourmi = new CFourmi(lCouleurDeposee, lCouleurSuivie, lDeplacement, mPainting,
-                        lInit_x, lInit_y, lTaille, this);
-                mColonie.addElement(lFourmi);
-                lNbFourmis++;
+                mColonie.addElement(new CFourmi(lCouleurDeposee, lCouleurSuivie, lDeplacement,
+                                                mPainting, lInit_x, lInit_y, lTaille, this));
             }
         }
 
