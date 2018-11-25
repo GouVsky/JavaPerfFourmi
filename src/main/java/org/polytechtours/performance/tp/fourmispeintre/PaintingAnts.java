@@ -364,9 +364,20 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         System.out.println(
             "(" + lTypeDeplacement + "," + lProbaG + "," + lProbaTD + "," + lProbaD + "," + lProbaSuivre + ");");
 
+
+        // Création du déplacement de la fourmi.
+
+        float[] deplacements = new float[4];
+        deplacements[0] = lProbaG;
+        deplacements[1] = lProbaTD;
+        deplacements[2] = lProbaD;
+        deplacements[3] = lProbaSuivre;
+
+        CDeplacement lDeplacement = new CDeplacement(lTypeDeplacement, lInitDirection, deplacements);
+
         // création et ajout de la fourmi dans la colonie
-        lFourmi = new CFourmi(lTabColor[i], lTabColor[lColor], lProbaTD, lProbaG, lProbaD, lProbaSuivre, mPainting,
-            lTypeDeplacement, lInit_x, lInit_y, lInitDirection, lTaille, this);
+        lFourmi = new CFourmi(lTabColor[i], lTabColor[lColor], lDeplacement, mPainting,
+                lInit_x, lInit_y, lTaille, this);
         mColonie.addElement(lFourmi);
       }
     }

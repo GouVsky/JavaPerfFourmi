@@ -1,6 +1,8 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 // package PaintingAnts_v2;
 
+import sun.security.krb5.internal.ccache.CCacheOutputStream;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,7 +47,7 @@ public class CPainting extends Canvas implements MouseListener {
   // tableau des couleurs, il permert de conserver en memoire l'état de chaque
   // pixel du canvas, ce qui est necessaire au deplacemet des fourmi
   // il sert aussi pour la fonction paint du Canvas
-  private Color[][] mCouleurs;
+  private CCouleur[][] mCouleurs;
   // couleur du fond
 
   // dimensions
@@ -67,10 +69,10 @@ public class CPainting extends Canvas implements MouseListener {
     mDimension = pDimension;
     setBounds(new Rectangle(0, 0, mDimension.width, mDimension.height));
 
-    this.setBackground(new Color(255, 255, 255));
+    this.setBackground(new CCouleur(255, 255, 255));
 
     // initialisation de la matrice des couleurs
-    mCouleurs = new Color[mDimension.width][mDimension.height];
+    mCouleurs = new CCouleur[mDimension.width][mDimension.height];
     synchronized (mMutexCouleurs) {
       for (i = 0; i != mDimension.width; i++) {
         for (j = 0; j != mDimension.height; j++) {
@@ -85,10 +87,12 @@ public class CPainting extends Canvas implements MouseListener {
    * Titre : Color getCouleur Description : Cette fonction renvoie la couleur
    * d'une case
    ******************************************************************************/
-  public Color getCouleur(int x, int y) {
-    synchronized (mMutexCouleurs) {
-      return mCouleurs[x][y];
-    }
+  public CCouleur getCouleur(int x, int y)
+  {
+      synchronized (mMutexCouleurs)
+      {
+        return mCouleurs[x][y];
+      }
   }
 
   /******************************************************************************
@@ -129,7 +133,7 @@ public class CPainting extends Canvas implements MouseListener {
 
       for (i = 0; i != mDimension.width; i++) {
         for (j = 0; j != mDimension.height; j++) {
-          mCouleurs[i][j] = new Color(255, 255, 255);
+          mCouleurs[i][j] = new CCouleur(255, 255, 255);
         }
       }
     }
@@ -308,10 +312,10 @@ public class CPainting extends Canvas implements MouseListener {
    * fonction va colorer le pixel correspondant et mettre a jour le tabmleau des
    * couleurs
    ******************************************************************************/
-  public void setCouleur(int x, int y, Color c, int pTaille) {
+  public void setCouleur(int x, int y, CCouleur c, int pTaille) {
     int i, j, k, l, m, n;
     float R, G, B;
-    Color lColor;
+    CCouleur lColor;
 
     synchronized (mMutexCouleurs) {
       if (!mSuspendu) {
@@ -342,7 +346,7 @@ public class CPainting extends Canvas implements MouseListener {
                   B += CPainting.mMatriceConv9[k][l] * mCouleurs[m][n].getBlue();
                 }
               }
-              lColor = new Color((int) R, (int) G, (int) B);
+              lColor = new CCouleur((int) R, (int) G, (int) B);
 
               mGraphics.setColor(lColor);
 
@@ -370,7 +374,7 @@ public class CPainting extends Canvas implements MouseListener {
                   B += CPainting.mMatriceConv25[k][l] * mCouleurs[m][n].getBlue();
                 }
               }
-              lColor = new Color((int) R, (int) G, (int) B);
+              lColor = new CCouleur((int) R, (int) G, (int) B);
               mGraphics.setColor(lColor);
               m = (x + i - 2 + mDimension.width) % mDimension.width;
               n = (y + j - 2 + mDimension.height) % mDimension.height;
@@ -398,7 +402,7 @@ public class CPainting extends Canvas implements MouseListener {
                   B += CPainting.mMatriceConv49[k][l] * mCouleurs[m][n].getBlue();
                 }
               }
-              lColor = new Color((int) R, (int) G, (int) B);
+              lColor = new CCouleur((int) R, (int) G, (int) B);
               mGraphics.setColor(lColor);
               m = (x + i - 3 + mDimension.width) % mDimension.width;
               n = (y + j - 3 + mDimension.height) % mDimension.height;
