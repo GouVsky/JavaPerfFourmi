@@ -1,8 +1,6 @@
 package org.polytechtours.performance.tp.fourmispeintre;
-// package PaintingAnts_v2;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 
 // version : 2.0
