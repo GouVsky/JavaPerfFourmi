@@ -1,7 +1,6 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 // package PaintingAnts_v2;
 
-import sun.security.krb5.internal.ccache.CCacheOutputStream;
 
 import java.awt.Canvas;
 import java.awt.Color;
