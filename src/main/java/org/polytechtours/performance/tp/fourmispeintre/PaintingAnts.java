@@ -213,15 +213,17 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
                 lTaille = HTMLReader.readTaille(lSTDéplacement);
 
 
+                // Lecture des paramètres de déplacements.
                 StringTokenizer lSTProbas = new StringTokenizer(lSTParam.nextToken(), ",");
 
                 lTypeDeplacement = HTMLReader.readTypeDeplacement(lSTProbas);
 
                 float[] probas = HTMLReader.readProbas(lSTProbas);
 
-
                 CDeplacement lDeplacement = new CDeplacement(lTypeDeplacement, lInitDirection, probas);
 
+
+                // Ajout de la fourmi.
                 mColonie.addElement(new CFourmi(lCouleurDeposee, lCouleurSuivie, lDeplacement,
                                                 mPainting, lInit_x, lInit_y, lTaille, this));
             }

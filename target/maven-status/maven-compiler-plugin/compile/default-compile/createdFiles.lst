@@ -2,8 +2,8 @@ org/polytechtours/performance/tp/fourmispeintre/utils/StringUtils.class
 org/polytechtours/performance/tp/fourmispeintre/PaintingAnts.class
 org/polytechtours/performance/tp/fourmispeintre/CColonie.class
 org/polytechtours/performance/tp/fourmispeintre/CPainting.class
-org/polytechtours/performance/tp/fourmispeintre/utils/ParametersUtils.class
 org/polytechtours/performance/tp/fourmispeintre/utils/MathsUtils.class
+org/polytechtours/performance/tp/fourmispeintre/utils/HTMLReader.class
 org/polytechtours/performance/tp/fourmispeintre/CCouleur.class
 org/polytechtours/performance/tp/fourmispeintre/CDeplacement.class
 org/polytechtours/performance/tp/fourmispeintre/Directions.class
