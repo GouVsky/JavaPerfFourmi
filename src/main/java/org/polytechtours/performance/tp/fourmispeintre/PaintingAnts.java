@@ -84,7 +84,8 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
      * Initialisation de l'applet
      */
     @Override
-    public void init() {
+    public void init()
+    {
         URL lFileName;
         URLClassLoader urlLoader = (URLClassLoader) this.getClass().getClassLoader();
 
@@ -99,14 +100,17 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         // lecture de l'image
         lFileName = urlLoader.findResource("images/" + getParameter("Img"));
-        try {
-            if (lFileName != null) {
+        try
+        {
+            if (lFileName != null)
                 mBaseImage = javax.imageio.ImageIO.read(lFileName);
-            }
-        } catch (java.io.IOException ex) {
+
+        } catch (java.io.IOException ex)
+        {
         }
 
-        if (mBaseImage != null) {
+        if (mBaseImage != null)
+        {
             mLargeur = mBaseImage.getWidth();
             mHauteur = mBaseImage.getHeight();
             mDimension.setSize(mLargeur, mHauteur);
@@ -125,11 +129,11 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
      * Paint the image and all active highlights.
      */
     @Override
-    public void paint(Graphics g) {
-
-        if (mBaseImage == null) {
+    public void paint(Graphics g)
+    {
+        if (mBaseImage == null)
             return;
-        }
+
         g.drawImage(mBaseImage, 0, 0, this);
     }
 
@@ -137,12 +141,9 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     /**
      * Mettre en pause
      */
-    public void pause() {
+    public void pause()
+    {
         mPause = !mPause;
-        // if (!mPause)
-        // {
-        // notify();
-        // }
     }
 
     // =========================================================================
@@ -249,8 +250,8 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     }
 
     @Override
-    public void run() {
-        int i;
+    public void run()
+    {
         String lMessage;
 
         mPainting.init();
@@ -264,12 +265,14 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         mThreadColony.start();
 
-        while (mApplis == currentThread) {
-            if (mPause) {
+        while (mApplis == currentThread)
+        {
+            if (mPause)
                 lMessage = "pause";
-            } else {
+
+            else
                 lMessage = "running (" + statisticsHandler.getLastFPS() + ") ";
-            }
+
             showStatus(lMessage);
 
             try {

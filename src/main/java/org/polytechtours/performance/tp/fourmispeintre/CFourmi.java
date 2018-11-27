@@ -96,58 +96,58 @@ public class CFourmi
      */
     public synchronized void deplacer()
     {
-        int i, j;
         CCouleur lCouleur;
 
-        // le tableau dir contient 0 si la direction concernée ne contient pas la
-        // couleur
-        // à suivre, et 1 sinon (dir[0]=gauche, dir[1]=tt_droit, dir[2]=droite)
-        i = MathsUtils.modulo(x + CDeplacement.mIncDirection[MathsUtils.modulo(mDeplacement.getCurrentDirection() - mDeplacement.getDecalDirection(), 8)][0], mPainting.getLargeur());
-        j = MathsUtils.modulo(y + CDeplacement.mIncDirection[MathsUtils.modulo(mDeplacement.getCurrentDirection() - mDeplacement.getDecalDirection(), 8)][1], mPainting.getHauteur());
-        if (mApplis.mBaseImage != null) {
-            lCouleur = new CCouleur(mApplis.mBaseImage.getRGB(i, j));
-        } else {
-            lCouleur = new CCouleur(mPainting.getCouleur(i, j).getRGB());
-        }
-        if (mCouleurDeposee.testCouleur(lCouleur)) {
+        int currentDirection = mDeplacement.getCurrentDirection();
+        int decalDirection = mDeplacement.getDecalDirection();
+
+        int[] deplacementsLeft = CDeplacement.mIncDirection[MathsUtils.modulo(currentDirection - decalDirection, 8)];
+        int[] deplacementsToward = CDeplacement.mIncDirection[currentDirection];
+        int[] deplacementsRight = CDeplacement.mIncDirection[MathsUtils.modulo(currentDirection + decalDirection, 8)];
+
+
+        lCouleur = choixCouleur(deplacementsLeft);
+
+        if (mCouleurDeposee.testCouleur(lCouleur))
             mDeplacement.goTo(Directions.LEFT);
-        }
 
-        i = MathsUtils.modulo(x + CDeplacement.mIncDirection[mDeplacement.getCurrentDirection()][0], mPainting.getLargeur());
-        j = MathsUtils.modulo(y + CDeplacement.mIncDirection[mDeplacement.getCurrentDirection()][1], mPainting.getHauteur());
-        if (mApplis.mBaseImage != null) {
-            lCouleur = new CCouleur(mApplis.mBaseImage.getRGB(i, j));
-        } else {
-            lCouleur = new CCouleur(mPainting.getCouleur(i, j).getRGB());
-        }
-        if (mCouleurDeposee.testCouleur(lCouleur)) {
+
+        lCouleur = choixCouleur(deplacementsToward);
+
+        if (mCouleurDeposee.testCouleur(lCouleur))
             mDeplacement.goTo(Directions.TOWARDS);
-        }
 
-        i = MathsUtils.modulo(x + CDeplacement.mIncDirection[MathsUtils.modulo(mDeplacement.getCurrentDirection() + mDeplacement.getDecalDirection(), 8)][0], mPainting.getLargeur());
-        j = MathsUtils.modulo(y + CDeplacement.mIncDirection[MathsUtils.modulo(mDeplacement.getCurrentDirection() + mDeplacement.getDecalDirection(), 8)][1], mPainting.getHauteur());
-        if (mApplis.mBaseImage != null) {
-            lCouleur = new CCouleur(mApplis.mBaseImage.getRGB(i, j));
-        } else {
-            lCouleur = new CCouleur(mPainting.getCouleur(i, j).getRGB());
-        }
-        if (mCouleurDeposee.testCouleur(lCouleur)) {
+
+        lCouleur = choixCouleur(deplacementsRight);
+
+        if (mCouleurDeposee.testCouleur(lCouleur))
             mDeplacement.goTo(Directions.RIGHT);
-        }
+
 
         mDeplacement.doDeplacement();
 
 
-        x += CDeplacement.mIncDirection[mDeplacement.getCurrentDirection()][0];
-        y += CDeplacement.mIncDirection[mDeplacement.getCurrentDirection()][1];
+        x += CDeplacement.mIncDirection[currentDirection][0];
+        y += CDeplacement.mIncDirection[currentDirection][1];
 
         x = MathsUtils.modulo(x, mPainting.getLargeur());
         y = MathsUtils.modulo(y, mPainting.getHauteur());
 
-        // coloration de la nouvelle position de la fourmi
+        // Coloration de la nouvelle position de la fourmi.
         mPainting.setCouleur(x, y, mCouleurDeposee, mTaille);
 
         mApplis.IncrementFpsCounter();
+    }
+
+    private CCouleur choixCouleur(int[] deplacements)
+    {
+        int i = MathsUtils.modulo(x + deplacements[0], mPainting.getLargeur());
+        int j = MathsUtils.modulo(y + deplacements[1], mPainting.getHauteur());
+
+        if (mApplis.mBaseImage != null)
+            return new CCouleur(mApplis.mBaseImage.getRGB(i, j));
+
+        return new CCouleur(mPainting.getCouleur(i, j).getRGB());
     }
 
     /*************************************************************************************************

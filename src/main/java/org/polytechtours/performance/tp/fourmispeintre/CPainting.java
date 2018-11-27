@@ -113,7 +113,8 @@ public class CPainting extends Canvas implements MouseListener {
     public void init() {
         int i, j;
         mGraphics = getGraphics();
-        synchronized (mMutexCouleurs) {
+        synchronized (mMutexCouleurs)
+        {
             mGraphics.clearRect(0, 0, mDimension.width, mDimension.height);
 
             // initialisation de la matrice des couleurs
@@ -178,8 +179,13 @@ public class CPainting extends Canvas implements MouseListener {
         // initialisation de la matrice de convolution : lissage moyen sur 49
         // cases
         /*
-         * 1 1 2 2 2 1 1 1 2 3 4 3 2 1 2 3 4 5 4 3 2 2 4 5 8 5 4 2 2 3 4 5 4 3 2 1 2
-         * 3 4 3 2 1 1 1 2 2 2 1 1
+         * 1 1 2 2 2 1 1
+         * 1 2 3 4 3 2 1
+         * 2 3 4 5 4 3 2
+         * 2 4 5 8 5 4 2
+         * 2 3 4 5 4 3 2
+         * 1 2 3 4 3 2 1
+         * 1 1 2 2 2 1 1
          */
         CPainting.mMatriceConv49[0][0] = 1 / 128f;
         CPainting.mMatriceConv49[0][1] = 1 / 128f;
@@ -378,9 +384,11 @@ public class CPainting extends Canvas implements MouseListener {
      * Titre : setSupendu Description : Cette fonction change l'état de suspension
      ******************************************************************************/
 
-    public void suspendre() {
+    public void suspendre()
+    {
         mSuspendu = !mSuspendu;
-        if (!mSuspendu) {
+        if (!mSuspendu)
+        {
             repaint();
         }
     }
