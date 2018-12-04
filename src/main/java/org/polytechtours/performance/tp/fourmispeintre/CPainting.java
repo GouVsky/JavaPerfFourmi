@@ -313,6 +313,7 @@ public class CPainting extends Canvas implements MouseListener {
 
                 mGraphics.setColor(c);
                 mGraphics.fillRect(x, y, 1, 1);
+
             }
 
             mCouleurs[x][y] = c;
@@ -322,19 +323,19 @@ public class CPainting extends Canvas implements MouseListener {
             switch (pTaille)
             {
                 case 1:
-                    calculConvolution(x, y, 1, CPainting.mMatriceConv9);
+                    calculConvolution(x, y, CPainting.mMatriceConv9);
                     break;
                 case 2:
-                    calculConvolution(x, y, 2, CPainting.mMatriceConv25);
+                    calculConvolution(x, y, CPainting.mMatriceConv25);
                     break;
                 case 3:
-                    calculConvolution(x, y, 3, CPainting.mMatriceConv49);
+                    calculConvolution(x, y, CPainting.mMatriceConv49);
                     break;
             }
         }
     }
 
-    private void calculConvolution(int x, int y, int numero, float[][] matrice)
+    private void calculConvolution(int x, int y, float[][] matrice)
     {
         int m, n;
         int size = matrice.length;
@@ -367,6 +368,7 @@ public class CPainting extends Canvas implements MouseListener {
                 mCouleurs[m][n] = lColor;
                 if (!mSuspendu)
                 {
+
                     mGraphics.fillRect(m, n, 1, 1);
                 }
 
