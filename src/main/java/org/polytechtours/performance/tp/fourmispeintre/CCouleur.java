@@ -13,14 +13,14 @@ public class CCouleur extends Color
     {
         super(red, green, blue);
 
-        setLuminance();
+        luminance = 0.2426f * red + 0.7152f * green + 0.0722f * blue;
     }
 
     public CCouleur(int rgb)
     {
         super(rgb);
 
-        setLuminance();
+        luminance = 0.2426f * getRed() + 0.7152f * getGreen() + 0.0722f * getBlue();
     }
 
     /*************************************************************************************************
@@ -35,11 +35,6 @@ public class CCouleur extends Color
             return true;
 
         return false;
-    }
-
-    private void setLuminance()
-    {
-        luminance = 0.2426f * getRed() + 0.7152f * getGreen() + 0.0722f * getBlue();
     }
 
     public float getLuminance()
