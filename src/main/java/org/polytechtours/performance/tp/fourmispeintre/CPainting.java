@@ -362,6 +362,7 @@ public class CPainting extends Canvas implements MouseListener {
         }
     }
 
+
     private void calculConvolution(int x, int y, int[][] matrice)
     {
         int m, n;
