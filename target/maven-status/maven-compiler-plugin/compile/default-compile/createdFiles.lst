@@ -9,4 +9,6 @@ org/polytechtours/performance/tp/fourmispeintre/CDeplacement.class
 org/polytechtours/performance/tp/fourmispeintre/Directions.class
 org/polytechtours/performance/tp/fourmispeintre/CFourmi.class
 org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler.class
+org/polytechtours/performance/tp/fourmispeintre/utils/MyGraphics2D.class
 org/polytechtours/performance/tp/fourmispeintre/StatisticsHandler$UpdateListener.class
+org/polytechtours/performance/tp/fourmispeintre/utils/ColorUtils.class

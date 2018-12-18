@@ -147,7 +147,7 @@ public class CFourmi
         if (mApplis.mBaseImage != null)
             return new CCouleur(mApplis.mBaseImage.getRGB(i, j));
 
-        return new CCouleur(mPainting.getCouleur(i, j).getRGB());
+        return new CCouleur(mPainting.getCouleur(i, j));
     }
 
     /*************************************************************************************************

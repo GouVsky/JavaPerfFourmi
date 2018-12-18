@@ -28,7 +28,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     private Dimension mDimension;
     private boolean mPause = false;
 
-    public BufferedImage mBaseImage;
+    public static BufferedImage mBaseImage;
 
     private StatisticsHandler statisticsHandler;
 
@@ -95,11 +95,8 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         mLargeur = mDimension.width;
         mHauteur = mDimension.height;
 
-        mPainting = new CPainting(mDimension, this);
-        add(mPainting);
-
         // lecture de l'image
-        lFileName = urlLoader.findResource("images/" + getParameter("Img"));
+        lFileName = urlLoader.findResource("images/Img.png");// + getParameter("Img"));
         try
         {
             if (lFileName != null)
@@ -116,6 +113,9 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
             mDimension.setSize(mLargeur, mHauteur);
             resize(mDimension);
         }
+
+        mPainting = new CPainting(mDimension, this);
+        add(mPainting);
 
         readParameterFourmis();
 

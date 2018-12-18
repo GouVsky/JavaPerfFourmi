@@ -20,7 +20,7 @@ public class CCouleur extends Color
     {
         super(rgb);
 
-        luminance = 0.2426f * getRed() + 0.7152f * getGreen() + 0.0722f * getBlue();
+        luminance = 0.2426f * (rgb >> 16 & 255) + 0.7152f * (rgb >> 8 & 255) + 0.0722f * (rgb >> 0 & 255);
     }
 
     /*************************************************************************************************
