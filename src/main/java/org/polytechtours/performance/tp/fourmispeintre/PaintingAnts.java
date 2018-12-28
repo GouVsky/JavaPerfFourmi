@@ -1,5 +1,6 @@
 package org.polytechtours.performance.tp.fourmispeintre;
 
+import org.polytechtours.performance.tp.fourmispeintre.utils.ColorUtils;
 import org.polytechtours.performance.tp.fourmispeintre.utils.HTMLReader;
 
 import java.awt.Dimension;
@@ -151,7 +152,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
     private void readParameterFourmis()
     {
         // Luminance.
-        CCouleur.seuilLuminance = HTMLReader.readLuminance(this);
+        ColorUtils.seuilLuminance = HTMLReader.readLuminance(this);
         //System.out.println("Seuil de luminance:" + CCouleur.seuilLuminance);
 
         // Nombre de fourmis.
@@ -181,7 +182,7 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
             char lTypeDeplacement;
             float lInit_x, lInit_y;
             int lInitDirection, lTaille;
-            CCouleur lCouleurDeposee, lCouleurSuivie;
+            int lCouleurDeposee, lCouleurSuivie;
 
             //System.out.println("Paramètres:" + lChaine);
 

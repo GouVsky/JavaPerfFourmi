@@ -2,6 +2,7 @@ package org.polytechtours.performance.tp.fourmispeintre;
 // package PaintingAnts_v3;
 // version : 4.0
 
+import org.polytechtours.performance.tp.fourmispeintre.utils.ColorUtils;
 import org.polytechtours.performance.tp.fourmispeintre.utils.MathsUtils;
 
 public class CFourmi
@@ -13,10 +14,10 @@ public class CFourmi
     private int mTaille;
 
     // Couleur déposée par la fourmi.
-    private CCouleur mCouleurDeposee;
+    private int mCouleurDeposee;
 
     // Couleur suivie par la fourmi.
-    private CCouleur mCouleurSuivie;
+    private int mCouleurSuivie;
 
     // Deplacement de la fourmi.
     private CDeplacement mDeplacement;
@@ -30,9 +31,9 @@ public class CFourmi
 
     public CFourmi(CPainting pPainting, PaintingAnts pApplis)
     {
-        mCouleurDeposee = new CCouleur((int) (Math.random() * 256),
-                                        (int) (Math.random() * 256),
-                                        (int) (Math.random() * 256));
+        mCouleurDeposee = ColorUtils.getColor((int) (Math.random() * 256),
+                                                (int) (Math.random() * 256),
+                                                (int) (Math.random() * 256));
 
         //x = (float) Math.random();
         //y = (float) Math.random();
@@ -61,7 +62,7 @@ public class CFourmi
     }
 
 
-    public CFourmi(CCouleur pCouleurDeposee, CCouleur pCouleurSuivie, CDeplacement pDeplacement,
+    public CFourmi(int pCouleurDeposee, int pCouleurSuivie, CDeplacement pDeplacement,
                    CPainting pPainting, float pInit_x, float pInit_y, int pTaille, PaintingAnts pApplis)
     {
         mCouleurDeposee = pCouleurDeposee;
@@ -80,12 +81,12 @@ public class CFourmi
     }
 
 
-    public void setmCouleurSuivie(CCouleur couleur)
+    public void setmCouleurSuivie(int couleur)
     {
         mCouleurSuivie = couleur;
     }
 
-    public CCouleur getmCouleurDeposee()
+    public int getmCouleurDeposee()
     {
         return mCouleurDeposee;
     }
@@ -96,7 +97,7 @@ public class CFourmi
      */
     public synchronized void deplacer()
     {
-        CCouleur lCouleur;
+        int lCouleur;
 
         int currentDirection = mDeplacement.getCurrentDirection();
         int decalDirection = mDeplacement.getDecalDirection();
@@ -108,19 +109,19 @@ public class CFourmi
 
         lCouleur = choixCouleur(deplacementsLeft);
 
-        if (mCouleurDeposee.testCouleur(lCouleur))
+        if (ColorUtils.testColor(mCouleurDeposee, lCouleur))
             mDeplacement.goTo(Directions.LEFT);
 
 
         lCouleur = choixCouleur(deplacementsToward);
 
-        if (mCouleurDeposee.testCouleur(lCouleur))
+        if (ColorUtils.testColor(mCouleurDeposee, lCouleur))
             mDeplacement.goTo(Directions.TOWARDS);
 
 
         lCouleur = choixCouleur(deplacementsRight);
 
-        if (mCouleurDeposee.testCouleur(lCouleur))
+        if (ColorUtils.testColor(mCouleurDeposee, lCouleur))
             mDeplacement.goTo(Directions.RIGHT);
 
 
@@ -139,15 +140,15 @@ public class CFourmi
         mApplis.IncrementFpsCounter();
     }
 
-    private CCouleur choixCouleur(int[] deplacements)
+    private int choixCouleur(int[] deplacements)
     {
         int i = MathsUtils.modulo(x + deplacements[0], mPainting.getLargeur());
         int j = MathsUtils.modulo(y + deplacements[1], mPainting.getHauteur());
 
         if (mApplis.mBaseImage != null)
-            return new CCouleur(mApplis.mBaseImage.getRGB(i, j));
+            return mApplis.mBaseImage.getRGB(i, j);
 
-        return new CCouleur(mPainting.getCouleur(i, j));
+        return mPainting.getCouleur(i, j);
     }
 
     /*************************************************************************************************

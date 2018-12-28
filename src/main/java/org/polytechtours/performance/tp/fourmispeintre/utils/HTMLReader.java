@@ -1,8 +1,8 @@
 package org.polytechtours.performance.tp.fourmispeintre.utils;
 
-import org.polytechtours.performance.tp.fourmispeintre.*;
+import org.polytechtours.performance.tp.fourmispeintre.Directions;
+import org.polytechtours.performance.tp.fourmispeintre.PaintingAnts;
 
-import java.applet.Applet;
 import java.util.StringTokenizer;
 
 public class HTMLReader
@@ -33,7 +33,7 @@ public class HTMLReader
         return (int) (Math.random() * 5) + 2;
     }
 
-    public static CCouleur readCouleur(StringTokenizer lSTParam)
+    public static int readCouleur(StringTokenizer lSTParam)
     {
         // lecture de la couleur déposée
         StringTokenizer lSTCouleur = new StringTokenizer(lSTParam.nextToken(), ",");
@@ -51,7 +51,7 @@ public class HTMLReader
         if (blue == -1)
             blue = (int) (Math.random() * 256);
 
-        return new CCouleur(red, green, blue);
+        return ColorUtils.getColor(red, green, blue);
     }
 
     public static float[] readCoordonnees(StringTokenizer chaine)

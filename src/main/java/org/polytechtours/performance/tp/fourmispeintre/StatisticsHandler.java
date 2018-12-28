@@ -26,7 +26,6 @@ public class StatisticsHandler {
    * component's <code>addUpdateListener<code> method. When the update event
    * occurs, that object's appropriate method is invoked.
    *
-   * @see UpdateEvent
    */
   public interface UpdateListener extends EventListener {
 
