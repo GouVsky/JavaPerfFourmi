@@ -110,7 +110,7 @@ public class CPainting extends Canvas implements MouseListener {
      ******************************************************************************/
     public void init()
     {
-        int white = 16777215;
+        int white = ColorUtils.getColor(255, 255, 255);
 
         synchronized (mMutexCouleurs)
         {
@@ -292,13 +292,14 @@ public class CPainting extends Canvas implements MouseListener {
     public void mouseReleased(MouseEvent pMouseEvent) {
     }
 
+
     /******************************************************************************
      * Titre : void paint(Graphics g) Description : Surcharge de la fonction qui
      * est appelé lorsque le composant doit être redessiné
      ******************************************************************************/
     @Override
     public void paint(Graphics pGraphics) {
-        int i, j;
+        /*int i, j;
 
         synchronized (mMutexCouleurs) {
             for (i = 0; i < mDimension.width; i++)
@@ -308,7 +309,7 @@ public class CPainting extends Canvas implements MouseListener {
                     PaintingAnts.mBaseImage.setRGB(i, j, mCouleursInt[i][j]);
                 }
             }
-        }
+        }*/
 
         pGraphics.drawImage(PaintingAnts.mBaseImage, 0, 0, null);
     }
@@ -346,8 +347,6 @@ public class CPainting extends Canvas implements MouseListener {
                     break;
             }
         }
-
-        repaint();
     }
 
 

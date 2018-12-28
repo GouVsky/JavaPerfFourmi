@@ -7,6 +7,7 @@ import java.awt.*;
 public class ColorUtils
 {
     public static float seuilLuminance;
+    
 
     public static int getColor(int red, int green, int blue)
     {

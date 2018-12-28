@@ -135,7 +135,8 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
         if (mBaseImage == null)
             return;
 
-        g.drawImage(mBaseImage, 0, 0, this);
+        mPainting.repaint();
+        //g.drawImage(mBaseImage, 0, 0, this);
     }
 
     /****************************************************************************/
@@ -275,9 +276,11 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
                 lMessage = "running (" + statisticsHandler.getLastFPS() + ") ";
 
             showStatus(lMessage);
+            repaint();
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
+
             } catch (InterruptedException e) {
                 showStatus(e.toString());
             }
@@ -323,5 +326,10 @@ public class PaintingAnts extends java.applet.Applet implements Runnable {
 
         mThreadColony = null;
         mApplis = null;
+    }
+
+    public CPainting getmPainting()
+    {
+        return mPainting;
     }
 }
